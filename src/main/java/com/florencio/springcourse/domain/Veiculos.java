@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import com.florencio.springcourse.domain.enuns.CorCarroEnum;
 
 @Entity
-public abstract class Veiculos implements Serializable {
+public class Veiculos implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
