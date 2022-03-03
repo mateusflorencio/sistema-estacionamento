@@ -1,4 +1,4 @@
-package com.florencio.springcourse.domain.enuns;
+package com.florencio.estacionamento.domain.enuns;
 
 public enum CorCarroEnum {
 	

@@ -1,4 +1,4 @@
-package com.florencio.springcourse.domain;
+package com.florencio.estacionamento.domain;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import com.florencio.springcourse.domain.enuns.CorCarroEnum;
+import com.florencio.estacionamento.domain.enuns.CorCarroEnum;
 
 @Entity
 public class Veiculos implements Serializable {

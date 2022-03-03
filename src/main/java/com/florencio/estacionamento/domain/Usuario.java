@@ -1,12 +1,12 @@
-package com.florencio.springcourse.domain;
+package com.florencio.estacionamento.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,10 +20,12 @@ public class Usuario implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
-
+	
+	@ElementCollection
+	@CollectionTable( name = "TELEFONE")
 	private Set<String> telefone = new HashSet<>();
 
-	private List<Veiculos> veiculo = new ArrayList<>();
+	//private List<Veiculos> veiculo = new ArrayList<>();
 
 	public Usuario() {
 
@@ -59,13 +61,13 @@ public class Usuario implements Serializable {
 		this.telefone = telefone;
 	}
 
-	public List<Veiculos> getVeiculo() {
-		return veiculo;
-	}
+	//public List<Veiculos> getVeiculo() {
+	//	return veiculo;
+	//}
 
-	public void setVeiculo(List<Veiculos> veiculo) {
-		this.veiculo = veiculo;
-	}
+	//public void setVeiculo(List<Veiculos> veiculo) {
+	//	this.veiculo = veiculo;
+	//}
 
 	@Override
 	public int hashCode() {
