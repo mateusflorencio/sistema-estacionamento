@@ -7,7 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.florencio.estacionamento.domain.enuns.CorCarroEnum;
 
 @Entity
@@ -19,6 +22,11 @@ public class Veiculos implements Serializable {
 	private Integer id;
 	private String Placa;
 	private Integer cor;
+	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "usuario_id")
+	private Usuario usuario;
 
 	public Veiculos() {
 
@@ -58,6 +66,14 @@ public class Veiculos implements Serializable {
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	@Override

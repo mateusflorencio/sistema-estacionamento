@@ -1,7 +1,9 @@
 package com.florencio.estacionamento.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -11,6 +13,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Usuario implements Serializable {
@@ -20,12 +25,13 @@ public class Usuario implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
-	
-	@ElementCollection
-	@CollectionTable( name = "TELEFONE")
-	private Set<String> telefone = new HashSet<>();
 
-	//private List<Veiculos> veiculo = new ArrayList<>();
+	@ElementCollection
+	@CollectionTable(name = "TELEFONE")
+	private Set<String> telefone = new HashSet<>();
+	
+	@OneToMany(mappedBy = "usuario")
+	private List<Veiculos> veiculo = new ArrayList<>();
 
 	public Usuario() {
 
@@ -61,13 +67,13 @@ public class Usuario implements Serializable {
 		this.telefone = telefone;
 	}
 
-	//public List<Veiculos> getVeiculo() {
-	//	return veiculo;
-	//}
+	public List<Veiculos> getVeiculo() {
+		return veiculo;
+	}
 
-	//public void setVeiculo(List<Veiculos> veiculo) {
-	//	this.veiculo = veiculo;
-	//}
+	public void setVeiculo(List<Veiculos> veiculo) {
+		this.veiculo = veiculo;
+	}
 
 	@Override
 	public int hashCode() {
