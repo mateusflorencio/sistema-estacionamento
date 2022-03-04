@@ -1,7 +1,6 @@
 package com.florencio.estacionamento.domain;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
 
@@ -10,8 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 @Entity
 public class Estacionamento implements Serializable {
 
@@ -19,6 +16,7 @@ public class Estacionamento implements Serializable {
 
 
 	@Id
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	private Date dataEntrada;

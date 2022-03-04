@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.florencio.estacionamento.domain.enuns.CorCarroEnum;
+import com.florencio.estacionamento.domain.enuns.TipoVeiculoEnum;
 
 @Entity
 public class Veiculo implements Serializable {
@@ -21,6 +22,7 @@ public class Veiculo implements Serializable {
 	private Integer id;
 	private String Placa;
 	private Integer cor;
+	private Integer tipoVeiculo;
 
 	@ManyToOne
 	@JoinColumn(name = "usuario_id")
@@ -30,11 +32,12 @@ public class Veiculo implements Serializable {
 
 	}
 
-	public Veiculo(Integer id, String placa, CorCarroEnum cor) {
+	public Veiculo(Integer id, String placa, CorCarroEnum cor, TipoVeiculoEnum tipo, Usuario usuario) {
 		super();
 		this.id = id;
 		Placa = placa;
 		this.cor = (cor == null) ? null : cor.getCode();
+		this.tipoVeiculo =(tipo ==null) ? null : tipo.getCode();
 	}
 
 	public Integer getId() {
@@ -59,6 +62,14 @@ public class Veiculo implements Serializable {
 
 	public void setCor(CorCarroEnum corID) {
 		this.cor = corID.getCode();
+	}
+
+	public TipoVeiculoEnum getTipoveiculo() {
+		return TipoVeiculoEnum.paraEnum(tipoVeiculo);
+	}
+
+	public void setTipoveiculo(TipoVeiculoEnum tipoId) {
+		this.tipoVeiculo = tipoId.getCode();
 	}
 
 	@Override
