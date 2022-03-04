@@ -8,35 +8,46 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class Estacionamento implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-
 	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private Date dataEntrada;
+
+	@ManyToOne
+	@JoinColumn(name = "atendente_id")
 	private Atendente atendente;
+
+	@ManyToOne
+	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
+
+	@ManyToOne
+	@JoinColumn(name = "veiculos_id")
 	private Veiculo veiculo;
-	private Vaga vaga;
-	
+
 	public Estacionamento() {
-		
+
 	}
 
-	public Estacionamento(Integer id, Date dataEntrada, Atendente atendente, Usuario usuario, Veiculo veiculo, Vaga vaga) {
+	public Estacionamento(Integer id, Date dataEntrada, Atendente atendente, Usuario usuario, Veiculo veiculo) {
 		super();
 		this.id = id;
 		this.dataEntrada = dataEntrada;
 		this.atendente = atendente;
 		this.usuario = usuario;
 		this.veiculo = veiculo;
-		this.vaga = vaga;
 	}
 
 	public Integer getId() {
@@ -47,12 +58,12 @@ public class Estacionamento implements Serializable {
 		this.id = id;
 	}
 
-	public Date getData() {
+	public Date getDataEntrada() {
 		return dataEntrada;
 	}
 
-	public void setData(Date data) {
-		this.dataEntrada = data;
+	public void setDataEntrada(Date dataEntrada) {
+		this.dataEntrada = dataEntrada;
 	}
 
 	public Atendente getAtendente() {
@@ -79,14 +90,6 @@ public class Estacionamento implements Serializable {
 		this.veiculo = veiculo;
 	}
 
-	public Vaga getVaga() {
-		return vaga;
-	}
-
-	public void setVaga(Vaga vaga) {
-		this.vaga = vaga;
-	}
-
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -103,7 +106,5 @@ public class Estacionamento implements Serializable {
 		Estacionamento other = (Estacionamento) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
 
 }

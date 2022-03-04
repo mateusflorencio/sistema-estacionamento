@@ -1,6 +1,8 @@
 package com.florencio.estacionamento.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -9,7 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.florencio.estacionamento.domain.enuns.CorCarroEnum;
 import com.florencio.estacionamento.domain.enuns.TipoVeiculoEnum;
 
@@ -28,16 +32,21 @@ public class Veiculo implements Serializable {
 	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
 
+	@OneToMany(mappedBy = "usuario")
+	@JsonIgnore
+	private List<Estacionamento> estacionamento = new ArrayList<>();
+
 	public Veiculo() {
 
 	}
 
 	public Veiculo(Integer id, String placa, CorCarroEnum cor, TipoVeiculoEnum tipo, Usuario usuario) {
 		super();
+		this.usuario = usuario;
 		this.id = id;
 		Placa = placa;
 		this.cor = (cor == null) ? null : cor.getCode();
-		this.tipoVeiculo =(tipo ==null) ? null : tipo.getCode();
+		this.tipoVeiculo = (tipo == null) ? null : tipo.getCode();
 	}
 
 	public Integer getId() {
@@ -72,17 +81,21 @@ public class Veiculo implements Serializable {
 		this.tipoVeiculo = tipoId.getCode();
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
-
 	public Usuario getUsuario() {
 		return usuario;
 	}
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public List<Estacionamento> getEstacionamento() {
+		return estacionamento;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
 	}
 
 	@Override

@@ -38,11 +38,13 @@ public class DBService {
 	@Autowired
 	private VagaRepository vagaRepository;
 
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
 	public void instantiateTestDatabase() throws ParseException {
 
 		Atendente a1 = new Atendente(null, "Mateus");
+
+		atendenteRepository.save(a1);
 
 		Usuario u1 = new Usuario(null, "Adria");
 		Usuario u2 = new Usuario(null, "Marcos");
@@ -70,10 +72,9 @@ public class DBService {
 
 		vagaRepository.saveAll(Arrays.asList(v1, v2, v3));
 
-		Estacionamento e1 = new Estacionamento(1, sdf.parse("2022/12/12 14:43:00"), a1, u2, veic1, v1);
-		Estacionamento e2 = new Estacionamento(2, sdf.parse("2022/12/12 23:40:30"), a1, u1, veic2, v2);
+		Estacionamento e1 = new Estacionamento(null, sdf.parse("22/22/2222 22:22:22"),a1,u1,veic1);
 
-		estacionamentoRepository.saveAll(Arrays.asList(e1, e2));
+		estacionamentoRepository.saveAll(Arrays.asList(e1));
 
 	}
 

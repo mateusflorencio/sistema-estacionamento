@@ -5,9 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.florencio.estacionamento.domain.Estacionamento;
 
-
 @Repository
-public interface EstacionamentoRepository extends JpaRepository<Estacionamento, Integer>{
-	
+public interface EstacionamentoRepository extends JpaRepository<Estacionamento, Integer> {
 
 }
