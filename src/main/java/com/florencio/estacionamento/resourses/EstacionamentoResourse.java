@@ -7,19 +7,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.florencio.estacionamento.domain.Veiculos;
-import com.florencio.estacionamento.services.VeiculosService;
+import com.florencio.estacionamento.domain.Estacionamento;
+import com.florencio.estacionamento.services.EstacionamentoService;
 
 @RestController
-@RequestMapping(value = "/veiculos")
-public class VeiculosResource {
-	
+@RequestMapping(value = "/estacionamento")
+public class EstacionamentoResourse {
+
 	@Autowired
-	private VeiculosService service;
-	
-	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id) {
-		Veiculos obj = service.findById(id);
+	private EstacionamentoService service;
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public ResponseEntity<Estacionamento> find(@PathVariable Integer id) {
+		Estacionamento obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 

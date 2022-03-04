@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import com.florencio.estacionamento.domain.enuns.CorCarroEnum;
 
 @Entity
-public class Veiculos implements Serializable {
+public class Veiculo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -26,11 +26,11 @@ public class Veiculos implements Serializable {
 	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
 
-	public Veiculos() {
+	public Veiculo() {
 
 	}
 
-	public Veiculos(Integer id, String placa, CorCarroEnum cor) {
+	public Veiculo(Integer id, String placa, CorCarroEnum cor) {
 		super();
 		this.id = id;
 		Placa = placa;
@@ -82,7 +82,7 @@ public class Veiculos implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Veiculos other = (Veiculos) obj;
+		Veiculo other = (Veiculo) obj;
 		return Objects.equals(id, other.id);
 	}
 
