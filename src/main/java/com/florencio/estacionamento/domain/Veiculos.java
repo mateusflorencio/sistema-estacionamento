@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.florencio.estacionamento.domain.enuns.CorCarroEnum;
 
 @Entity
@@ -22,8 +21,7 @@ public class Veiculos implements Serializable {
 	private Integer id;
 	private String Placa;
 	private Integer cor;
-	
-	@JsonIgnore
+
 	@ManyToOne
 	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;

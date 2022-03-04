@@ -29,7 +29,8 @@ public class Usuario implements Serializable {
 	@ElementCollection
 	@CollectionTable(name = "TELEFONE")
 	private Set<String> telefone = new HashSet<>();
-	
+
+	@JsonIgnore
 	@OneToMany(mappedBy = "usuario")
 	private List<Veiculos> veiculo = new ArrayList<>();
 
