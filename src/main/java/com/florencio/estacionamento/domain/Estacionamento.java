@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.florencio.estacionamento.domain.enuns.TipoCobranca;
+import com.florencio.estacionamento.domain.enuns.TipoVeiculoEnum;
 
 @Entity
 public class Estacionamento implements Serializable {
@@ -24,6 +26,11 @@ public class Estacionamento implements Serializable {
 
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private Date dataEntrada;
+
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
+	private Date dataSaida;
+
+	private Integer tipoCobranca;
 
 	@ManyToOne
 	@JoinColumn(name = "atendente_id")
@@ -41,10 +48,18 @@ public class Estacionamento implements Serializable {
 
 	}
 
-	public Estacionamento(Integer id, Date dataEntrada, Atendente atendente, Usuario usuario, Veiculo veiculo) {
+	public Estacionamento(Integer id,
+			Atendente atendente,
+			Date dataEntrada,
+			Date dataSaida,
+			TipoCobranca tipoCobranca,
+			Usuario usuario,
+			Veiculo veiculo) {
 		super();
 		this.id = id;
 		this.dataEntrada = dataEntrada;
+		this.dataSaida = dataSaida;
+		this.tipoCobranca=(tipoCobranca.getCode());
 		this.atendente = atendente;
 		this.usuario = usuario;
 		this.veiculo = veiculo;
@@ -64,6 +79,22 @@ public class Estacionamento implements Serializable {
 
 	public void setDataEntrada(Date dataEntrada) {
 		this.dataEntrada = dataEntrada;
+	}
+
+	public Date getDataSaida() {
+		return dataSaida;
+	}
+
+	public void setDataSaida(Date dataSaida) {
+		this.dataSaida = dataSaida;
+	}
+
+	public TipoCobranca getTipoCobranca() {
+		return TipoCobranca.paraEnum(tipoCobranca);
+	}
+
+	public void setTipoCobranca(TipoCobranca tipoCobranca) {
+		this.tipoCobranca = tipoCobranca.getCode();
 	}
 
 	public Atendente getAtendente() {

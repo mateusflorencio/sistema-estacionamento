@@ -72,7 +72,7 @@ public class DBService {
 
 		vagaRepository.saveAll(Arrays.asList(v1, v2, v3));
 
-		Estacionamento e1 = new Estacionamento(null, sdf.parse("22/22/2222 22:22:22"),a1,u1,veic1);
+		Estacionamento e1 = new Estacionamento(null, sdf.parse("22/22/2222 22:22:22"),null,a1,u1,veic1);
 
 		estacionamentoRepository.saveAll(Arrays.asList(e1));
 
