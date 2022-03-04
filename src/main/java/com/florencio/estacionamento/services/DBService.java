@@ -28,9 +28,9 @@ public class DBService {
 
 	public void instantiateTestDatabase() throws ParseException {
 
-		Veiculos veic1 = new Veiculos(null, "huk4859", 10.00, CorCarroEnum.AMARELO);
-		Veiculos veic2 = new Veiculos(null, "gtf5648", 10.00, CorCarroEnum.AZUL);
-		Veiculos veic3 = new Veiculos(null, "aaa1111", 10.00, CorCarroEnum.LARANJA);
+		Veiculos veic1 = new Veiculos(null, "huk4859", CorCarroEnum.AMARELO);
+		Veiculos veic2 = new Veiculos(null, "gtf5648", CorCarroEnum.AZUL);
+		Veiculos veic3 = new Veiculos(null, "aaa1111", CorCarroEnum.LARANJA);
 
 		veiculosRepository.saveAll(Arrays.asList(veic1, veic2, veic3));
 

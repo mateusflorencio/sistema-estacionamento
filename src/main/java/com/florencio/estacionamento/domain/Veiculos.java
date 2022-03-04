@@ -19,13 +19,12 @@ public class Veiculos implements Serializable {
 	private Integer id;
 	private String Placa;
 	private Integer cor;
-	private Double tarifa;
 
 	public Veiculos() {
 
 	}
 
-	public Veiculos(Integer id, String placa, Double tarifa, CorCarroEnum cor) {
+	public Veiculos(Integer id, String placa, CorCarroEnum cor) {
 		super();
 		this.id = id;
 		Placa = placa;
@@ -46,14 +45,6 @@ public class Veiculos implements Serializable {
 
 	public void setPlaca(String placa) {
 		Placa = placa;
-	}
-
-	public Double getTarifa() {
-		return tarifa;
-	}
-
-	public void setTarifa(Double tarifa) {
-		this.tarifa = tarifa;
 	}
 
 	public CorCarroEnum getCor() {
