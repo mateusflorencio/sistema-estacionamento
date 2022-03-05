@@ -4,21 +4,22 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.florencio.estacionamento.domain.Atendente;
 import com.florencio.estacionamento.domain.Estacionamento;
 import com.florencio.estacionamento.domain.Usuario;
 import com.florencio.estacionamento.domain.Vaga;
 import com.florencio.estacionamento.domain.Veiculo;
 import com.florencio.estacionamento.domain.enuns.CorCarroEnum;
+import com.florencio.estacionamento.domain.enuns.TipoCobranca;
 import com.florencio.estacionamento.domain.enuns.TipoVeiculoEnum;
 import com.florencio.estacionamento.repositories.AtendenteRepository;
 import com.florencio.estacionamento.repositories.EstacionamentoRepository;
 import com.florencio.estacionamento.repositories.UsuarioRepository;
 import com.florencio.estacionamento.repositories.VagaRepository;
 import com.florencio.estacionamento.repositories.VeiculoRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class DBService {
@@ -72,9 +73,27 @@ public class DBService {
 
 		vagaRepository.saveAll(Arrays.asList(v1, v2, v3));
 
-		Estacionamento e1 = new Estacionamento(null, sdf.parse("22/22/2222 22:22:22"),null,a1,u1,veic1);
+		Estacionamento e1 = new Estacionamento(null,
+				a1,
+				sdf.parse("22/12/2222 22:22:22"),
+				sdf.parse("23/12/2222 23:22:22"),
+				TipoCobranca.DIARIA,
+				u1,
+				veic1);
 
-		estacionamentoRepository.saveAll(Arrays.asList(e1));
+		Estacionamento e2 = new Estacionamento(null,
+				a1,
+				sdf.parse("22/12/2222 22:22:22"),
+				null,
+				TipoCobranca.DIARIA,
+				u2,
+				veic2);
+
+		e1.setTotal(MetodoCobranca.calcularTarifa(e1));
+		e2.setTotal(MetodoCobranca.calcularTarifa(e2));
+
+		estacionamentoRepository.saveAll(Arrays.asList(e1,e2));
+
 
 	}
 
