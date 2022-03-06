@@ -17,7 +17,8 @@ public class EstacionamentoService {
 
 	public Estacionamento findById(Integer id) {
 		Optional<Estacionamento> obj = repo.findById(id);
-		return obj.orElseThrow(() -> new ObjectNotFoundException("id não encotrado"));
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+			"Objeto não encontrado! Id: " + id + ", Tipo: " + EstacionamentoService.class.getName()));
 	}
 
 }

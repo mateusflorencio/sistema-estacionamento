@@ -38,6 +38,8 @@ public class Usuario implements Serializable {
 	@JsonIgnore
 	private List<Estacionamento> usuario = new ArrayList<>();
 
+	
+
 	public Usuario() {
 
 	}

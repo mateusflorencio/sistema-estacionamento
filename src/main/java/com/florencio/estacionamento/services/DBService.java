@@ -1,5 +1,7 @@
 package com.florencio.estacionamento.services;
 
+import static com.florencio.estacionamento.services.MetodoCobranca.calcularTarifa;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -89,8 +91,8 @@ public class DBService {
 				u2,
 				veic2);
 
-		e1.setTotal(MetodoCobranca.calcularTarifa(e1));
-		e2.setTotal(MetodoCobranca.calcularTarifa(e2));
+		e1.setTotal(calcularTarifa(e1));
+		e2.setTotal(calcularTarifa(e2));
 
 		estacionamentoRepository.saveAll(Arrays.asList(e1,e2));
 
