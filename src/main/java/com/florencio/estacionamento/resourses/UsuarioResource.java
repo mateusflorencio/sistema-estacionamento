@@ -2,7 +2,6 @@ package com.florencio.estacionamento.resourses;
 
 import java.net.URI;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.florencio.estacionamento.domain.Usuario;
 import com.florencio.estacionamento.dto.UsuarioNewDTO;

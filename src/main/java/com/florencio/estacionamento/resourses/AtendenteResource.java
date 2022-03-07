@@ -1,5 +1,6 @@
 package com.florencio.estacionamento.resourses;
 
+import java.net.URI;
 import java.util.List;
 
 import com.florencio.estacionamento.domain.Atendente;
@@ -9,9 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
 
 
 @RestController
@@ -30,9 +35,17 @@ public class AtendenteResource {
 	@GetMapping
 	public ResponseEntity<List<Atendente>> findAll() {
 		List<Atendente> list = service.findAll();
-
 		return ResponseEntity.ok().body(list);
 	}
+
+	@PostMapping
+	public ResponseEntity insert(@RequestBody Atendente entity) {
+		service.insert(entity);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+		.path("/{id}").buildAndExpand(entity.getId()).toUri();
+		return ResponseEntity.created(uri).build();
+	}
+	
 	
 
 }
