@@ -1,9 +1,12 @@
 package com.florencio.estacionamento.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+
 
 import com.florencio.estacionamento.domain.Estacionamento;
 import com.florencio.estacionamento.repositories.EstacionamentoRepository;
@@ -19,6 +22,10 @@ public class EstacionamentoService {
 		Optional<Estacionamento> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 			"Objeto não encontrado! Id: " + id + ", Tipo: " + EstacionamentoService.class.getName()));
+	}
+
+	public List<Estacionamento> findAll(){
+		return repo.findAll();
 	}
 
 }

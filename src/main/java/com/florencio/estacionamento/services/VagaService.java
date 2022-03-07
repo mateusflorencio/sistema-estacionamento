@@ -1,5 +1,6 @@
 package com.florencio.estacionamento.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.florencio.estacionamento.domain.Vaga;
@@ -20,6 +21,10 @@ public class VagaService {
 
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 			"Objeto não encontrado! Id: " + id + ", Tipo: " + Vaga.class.getName()));
+	}
+
+	public List<Vaga> findAll(){
+		return repo.findAll();
 	}
 
 }

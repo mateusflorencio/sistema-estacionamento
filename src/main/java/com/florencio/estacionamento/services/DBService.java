@@ -86,7 +86,7 @@ public class DBService {
 		Estacionamento e2 = new Estacionamento(null,
 				a1,
 				sdf.parse("22/12/2222 22:22:22"),
-				null,
+				(null),
 				TipoCobranca.DIARIA,
 				u2,
 				veic2);

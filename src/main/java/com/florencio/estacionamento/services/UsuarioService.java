@@ -1,5 +1,6 @@
 package com.florencio.estacionamento.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.florencio.estacionamento.domain.Usuario;
@@ -28,6 +29,10 @@ public class UsuarioService {
 		entity.setId(null);
 		entity = repo.save(entity);
 		return entity;
+	}
+
+	public List<Usuario> findAll(){
+		return repo.findAll();
 	}
 
 	public Usuario fromDTO(UsuarioNewDTO entityDto) {
