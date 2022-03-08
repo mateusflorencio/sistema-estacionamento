@@ -27,4 +27,8 @@ public class VagaService {
 		return repo.findAll();
 	}
 
+	public Vaga insert(Vaga obj){
+		return repo.save(obj);
+	}
+
 }
