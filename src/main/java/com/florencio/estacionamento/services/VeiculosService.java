@@ -37,6 +37,11 @@ public class VeiculosService {
 		return repo.findAll();
 	}
 
+	public Veiculo findPlaca(String placa){
+		return	repo.findByPlaca(placa);
+	}
+
+
 	public Veiculo fromDto (VeiculoNewDTO objDto){
 		Usuario usuario = usuarioService.findById(objDto.getUsuarioId());
 		Veiculo entity = new Veiculo(null, objDto.getPlaca(),

@@ -37,9 +37,8 @@ public class AtendenteResource {
 		List<Atendente> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
-
 	@PostMapping
-	public ResponseEntity insert(@RequestBody Atendente entity) {
+	public ResponseEntity<Void> insert(@RequestBody Atendente entity) {
 		service.insert(entity);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 		.path("/{id}").buildAndExpand(entity.getId()).toUri();
