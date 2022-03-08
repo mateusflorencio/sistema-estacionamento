@@ -9,29 +9,31 @@ import com.florencio.estacionamento.repositories.AtendenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-
 @Service
 public class AtendenteService {
-	
+
 	@Autowired
 	private AtendenteRepository repo;
-	
+
 	public Atendente findById(Integer id) {
 		Optional<Atendente> obj = repo.findById(id);
-		return obj.orElseThrow(()-> new IllegalArgumentException("Id não encontrado"));
+		return obj.orElseThrow(() -> new IllegalArgumentException("Id não encontrado"));
 	}
 
 	public List<Atendente> findAll() {
 		return repo.findAll();
 	}
 
-	public Atendente insert (Atendente entity){
+	public Atendente insert(Atendente entity) {
 		entity.setId(null);
 		entity = repo.save(entity);
 		return entity;
 	}
-	
-	
+
+	public Atendente update(Atendente obj) {
+		Atendente aux = findById(obj.getId());
+		aux.setNome(obj.getNome());
+		return repo.save(aux);
+	}
 
 }
