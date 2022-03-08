@@ -14,6 +14,7 @@ import com.florencio.estacionamento.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 @Service
 public class VeiculosService {
 
@@ -51,4 +52,13 @@ public class VeiculosService {
 		return entity;
 	}
 
-}
+	public Veiculo update(Veiculo obj){
+		Veiculo veiculo = findById(obj.getId());
+		veiculo.setCor(obj.getCor());
+		veiculo.setPlaca(obj.getPlaca());
+		veiculo.setTipoveiculo(obj.getTipoveiculo());
+		veiculo.setUsuario(obj.getUsuario());
+
+		return repo.save(veiculo);
+	}
+	}

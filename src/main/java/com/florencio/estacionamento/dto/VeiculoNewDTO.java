@@ -1,17 +1,29 @@
 package com.florencio.estacionamento.dto;
 
+import com.florencio.estacionamento.domain.Veiculo;
+
 public class VeiculoNewDTO {
 
     private String placa;
-	private Integer cor;
-	private Integer tipoVeiculo;
+    private Integer cor;
+    private Integer tipoVeiculo;
     private Integer usuarioId;
+
+    public VeiculoNewDTO() {
+    }
 
     public VeiculoNewDTO(String placa, Integer cor, Integer tipoVeiculo, Integer usuarioId) {
         this.placa = placa;
         this.cor = cor;
         this.tipoVeiculo = tipoVeiculo;
         this.usuarioId = usuarioId;
+    }
+
+    public VeiculoNewDTO(Veiculo veiculo) {
+        this.placa = veiculo.getPlaca();
+        this.cor = veiculo.getCor().getCode();
+        this.tipoVeiculo = veiculo.getTipoveiculo().getCode();
+        this.usuarioId = veiculo.getUsuario().getId();
     }
 
     public String getPlaca() {
@@ -46,10 +58,4 @@ public class VeiculoNewDTO {
         this.usuarioId = usuarioId;
     }
 
-    
-
-    
-
-    
-    
 }
