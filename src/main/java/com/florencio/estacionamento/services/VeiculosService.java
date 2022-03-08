@@ -9,9 +9,11 @@ import com.florencio.estacionamento.domain.enuns.CorCarroEnum;
 import com.florencio.estacionamento.domain.enuns.TipoVeiculoEnum;
 import com.florencio.estacionamento.dto.VeiculoNewDTO;
 import com.florencio.estacionamento.repositories.VeiculoRepository;
+import com.florencio.estacionamento.services.exceptions.DataIntegrityException;
 import com.florencio.estacionamento.services.exceptions.ObjectNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 
@@ -61,4 +63,12 @@ public class VeiculosService {
 
 		return repo.save(veiculo);
 	}
+
+    public void delete(Integer id) {
+		try {
+			repo.deleteById(id);
+		}catch (DataIntegrityViolationException e){
+			throw new DataIntegrityException("Não é possivel excluir porque há entidades relacionadas");
+		}
+    }
 	}

@@ -49,7 +49,7 @@ public class UsuarioResource {
 	}
 
 	@PutMapping(value="/{id}")
-	public ResponseEntity<Void> putMethodName(@PathVariable Integer id, @RequestBody UsuarioNewDTO objDto) {
+	public ResponseEntity<Void> update(@PathVariable Integer id, @RequestBody UsuarioNewDTO objDto) {
 		Usuario usuario = service.fromDTO(objDto);
 		usuario.setId(id);
 		service.update(usuario);	
