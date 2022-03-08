@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
 @RequestMapping(value = "/estacionamento")
@@ -45,6 +46,15 @@ public class EstacionamentoResourse {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("./{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).body(obj);
+	}
+
+	@PutMapping(value = "/{id}")
+	public ResponseEntity<Void> update(@PathVariable Integer id, @RequestBody EstacionamentoNewDTO objDto) {
+		Estacionamento estacionamento = service.fromDto(objDto);
+		estacionamento.setId(id);
+		service.update(estacionamento);
+
+		return ResponseEntity.noContent().build();
 	}
 
 }

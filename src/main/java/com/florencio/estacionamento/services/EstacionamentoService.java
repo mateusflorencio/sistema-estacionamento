@@ -53,8 +53,18 @@ public class EstacionamentoService {
 				TipoCobranca.paraEnum(objDto.getTipoCobrancaId()),
 				usuario,
 				veiculo);
-		repo.save(obj);
 		return obj;
+	}
+
+	public Estacionamento update(Estacionamento obj) {
+		Estacionamento estacionamento = findById(obj.getId());
+		estacionamento.setAtendente(obj.getAtendente());
+		estacionamento.setDataEntrada(obj.getDataEntrada());
+		estacionamento.setDataSaida(obj.getDataSaida());
+		estacionamento.setVeiculo(obj.getVeiculo());
+		estacionamento.setTipoCobranca(obj.getTipoCobranca());
+
+		return repo.save(estacionamento);
 	}
 
 }

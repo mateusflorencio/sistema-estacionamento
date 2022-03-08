@@ -19,6 +19,15 @@ public class EstacionamentoNewDTO {
 
     }
 
+    public EstacionamentoNewDTO(Integer atendenteId, Date dataEntrada, Date dataSaida, String placa,
+            Integer tipoCobrancaId) {
+        this.atendenteId = atendenteId;
+        this.dataEntrada = dataEntrada;
+        this.dataSaida = dataSaida;
+        this.placa = placa;
+        this.tipoCobrancaId = tipoCobrancaId;
+    }
+
     public EstacionamentoNewDTO(Estacionamento entity) {
         this.atendenteId = entity.getAtendente().getId();
         this.dataEntrada = entity.getDataEntrada();
