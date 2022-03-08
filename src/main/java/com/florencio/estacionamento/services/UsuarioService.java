@@ -31,7 +31,7 @@ public class UsuarioService {
 		return entity;
 	}
 
-	public List<Usuario> findAll(){
+	public List<Usuario> findAll() {
 		return repo.findAll();
 	}
 
@@ -45,4 +45,11 @@ public class UsuarioService {
 
 	}
 
+	public Usuario update(Usuario obj) {
+		Usuario usuario = findById(obj.getId());
+		usuario.setNome(obj.getNome());
+		usuario.setTelefone(obj.getTelefone());
+
+		return repo.save(usuario);
+	}
 }
