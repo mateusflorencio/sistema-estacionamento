@@ -65,6 +65,7 @@ public class VeiculosService {
 	}
 
     public void delete(Integer id) {
+		findById(id);
 		try {
 			repo.deleteById(id);
 		}catch (DataIntegrityViolationException e){
